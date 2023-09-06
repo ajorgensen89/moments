@@ -1,13 +1,21 @@
-import './App.css';
-import Button from 'react-bootstrap/Button';
-import NavBar from './components/NavBar';
+import styles from "./styles/App.module.css";
+import NavBar from "./components/NavBar";
+import Container from "react-bootstrap/Container";
+import { Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <NavBar />
-      <h1>Moments.</h1>{' '}
-      <Button variant="success">Success</Button>{' '}
+      <Container className={styles.Main}>
+        <Switch>
+          <Route exact path="/" render={() => <h1>Home page</h1>} />
+          <Route exact path="/signin" render={() => <h1>Sign in</h1>} />
+          <Route exact path="/signup" render={() => <h1>Sign up</h1>} />
+          <Route render={() => <p>Page not found!</p>} />
+          <h1>page</h1>
+        </Switch>
+      </Container>
     </div>
   );
 }
