@@ -4,7 +4,7 @@
   min-height: 100vh;
 }
 
-Main {
+.Main {
   padding-top: 81px;
 }
 
@@ -37,4 +37,8 @@ i:hover {
   cursor: pointer;
   transition: color ease-in-out 0.3s;
   color: #2142b2;
+}
+
+h1 {
+  color: #555555;
 }
