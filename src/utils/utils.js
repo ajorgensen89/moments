@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode"
 import { axiosReq } from "../api/axiosDefaults"
 
 export const fetchMoreData = async (resource, setResource) => {
@@ -46,3 +47,19 @@ export const unfollowHelper = (profile, clickedProfile) => {
             ? { ...profile, following_count: profile.following_count - 1 }
             : profile;
 }
+
+// Accept Token on login refresh.
+export const setTokenTimestamp = (data) => {
+    const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
+    localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+};
+
+// To refresh use token if it should or not using '!!'
+export const shouldRefreshToken = () => {
+    return !!localStorage.getItem("refreshTokenTimestamp");
+};
+
+// Refresh if Toekn has expired or User has logged out
+export const removeTokenTimestamp = () => {
+    localStorage.removeItem("refreshTokenTimestamp");
+};
